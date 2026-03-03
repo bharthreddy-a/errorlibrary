@@ -1,6 +1,6 @@
 package errorlib
 
-// Load bulk-registers a slice of AppErrors into a Registry.
+// LoadByArray bulk-registers a slice of AppErrors into a Registry.
 // Each service calls this at startup to register all its error codes at once.
 //
 // Example usage in a service:
@@ -10,8 +10,8 @@ package errorlib
 //	func init() {
 //	    errorlib.Load(Registry, AllErrors)
 //	}
-func Load(r *Registry, errors []AppError) {
-	if r == nil {
+func (r *Registry) LoadByArray(errors []AppError) {
+	if r == nil || errors == nil {
 		return
 	}
 	for _, err := range errors {
